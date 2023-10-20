@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
     <title>Hello World!</title>
   </head>
@@ -12,6 +10,27 @@
     We are using Node.js <span id="node-version"></span>,
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
+
+    <p>Viewport Width: <span id="viewport-width"></span>px</p>
+    <p>Viewport Height: <span id="viewport-height"></span>px</p>
+
+    <script>
+      // Function to update viewport dimensions
+      function updateViewportDimensions() {
+          // Get viewport width and height
+          const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          // Update the content with the dimensions
+          document.getElementById("viewport-width").textContent = viewportWidth;
+          document.getElementById("viewport-height").textContent = viewportHeight;
+      }
+
+      // Add an event listener to update dimensions on window resize
+      window.addEventListener('resize', updateViewportDimensions);
+
+      // Initial call to set dimensions
+      updateViewportDimensions();
+    </script>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
